@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CS4PEModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BangSanPham">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MaSP" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TenSP" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Loai_id" Type="int" Nullable="false" />
+          <Property Name="GiaBan" Type="int" Nullable="false" />
+          <Property Name="GiaGoc" Type="int" Nullable="false" />
+          <Property Name="GiaGop" Type="int" Nullable="false" />
+          <Property Name="SoLuongTon" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LoaiSanPham">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenLoai" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__BangSanPh__Loai___239E4DCF">
+          <End Role="LoaiSanPham" Type="Self.LoaiSanPham" Multiplicity="1" />
+          <End Role="BangSanPham" Type="Self.BangSanPham" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoaiSanPham">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="BangSanPham">
+              <PropertyRef Name="Loai_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CS4PEModelStoreContainer">
+          <EntitySet Name="BangSanPham" EntityType="Self.BangSanPham" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoaiSanPham" EntityType="Self.LoaiSanPham" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__BangSanPh__Loai___239E4DCF" Association="Self.FK__BangSanPh__Loai___239E4DCF">
+            <End Role="LoaiSanPham" EntitySet="LoaiSanPham" />
+            <End Role="BangSanPham" EntitySet="BangSanPham" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CS4PEModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="CS4PEEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="BangSanPhams" EntityType="CS4PEModel.BangSanPham" />
+          <EntitySet Name="LoaiSanPhams" EntityType="CS4PEModel.LoaiSanPham" />
+          <AssociationSet Name="FK__BangSanPh__Loai___239E4DCF" Association="CS4PEModel.FK__BangSanPh__Loai___239E4DCF">
+            <End Role="LoaiSanPham" EntitySet="LoaiSanPhams" />
+            <End Role="BangSanPham" EntitySet="BangSanPhams" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="BangSanPham">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MaSP" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TenSP" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Loai_id" Type="Int32" Nullable="false" />
+          <Property Name="GiaBan" Type="Int32" Nullable="false" />
+          <Property Name="GiaGoc" Type="Int32" Nullable="false" />
+          <Property Name="GiaGop" Type="Int32" Nullable="false" />
+          <Property Name="SoLuongTon" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="LoaiSanPham" Relationship="CS4PEModel.FK__BangSanPh__Loai___239E4DCF" FromRole="BangSanPham" ToRole="LoaiSanPham" />
+        </EntityType>
+        <EntityType Name="LoaiSanPham">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenLoai" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BangSanPhams" Relationship="CS4PEModel.FK__BangSanPh__Loai___239E4DCF" FromRole="LoaiSanPham" ToRole="BangSanPham" />
+        </EntityType>
+        <Association Name="FK__BangSanPh__Loai___239E4DCF">
+          <End Type="CS4PEModel.LoaiSanPham" Role="LoaiSanPham" Multiplicity="1" />
+          <End Type="CS4PEModel.BangSanPham" Role="BangSanPham" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoaiSanPham">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="BangSanPham">
+              <PropertyRef Name="Loai_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CS4PEModelStoreContainer" CdmEntityContainer="CS4PEEntities" >
+          <EntitySetMapping Name="BangSanPhams">
+            <EntityTypeMapping TypeName="CS4PEModel.BangSanPham">
+              <MappingFragment StoreEntitySet="BangSanPham">
+                <ScalarProperty Name="SoLuongTon" ColumnName="SoLuongTon" />
+                <ScalarProperty Name="GiaGop" ColumnName="GiaGop" />
+                <ScalarProperty Name="GiaGoc" ColumnName="GiaGoc" />
+                <ScalarProperty Name="GiaBan" ColumnName="GiaBan" />
+                <ScalarProperty Name="Loai_id" ColumnName="Loai_id" />
+                <ScalarProperty Name="TenSP" ColumnName="TenSP" />
+                <ScalarProperty Name="MaSP" ColumnName="MaSP" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoaiSanPhams">
+            <EntityTypeMapping TypeName="CS4PEModel.LoaiSanPham">
+              <MappingFragment StoreEntitySet="LoaiSanPham">
+                <ScalarProperty Name="TenLoai" ColumnName="TenLoai" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
