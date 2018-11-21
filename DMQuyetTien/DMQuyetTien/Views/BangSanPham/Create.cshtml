@@ -4,7 +4,7 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h2>THêm sản phẩm</h2>
 
 
 @using (Html.BeginForm()) 
@@ -12,12 +12,12 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>BangSanPham</h4>
+        <h4>Bản Sản Phẩm</h4>
         <hr />
         @Html.ValidationSummary(true)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.MaSP, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.MaSP,"Mã SP", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.MaSP)
                 @Html.ValidationMessageFor(model => model.MaSP)
@@ -25,7 +25,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.TenSP, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.TenSP, "Tên SP", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.TenSP)
                 @Html.ValidationMessageFor(model => model.TenSP)
@@ -33,7 +33,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Loai_id, "Loai_id", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Loai_id, "Loại ID", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("Loai_id", String.Empty)
                 @Html.ValidationMessageFor(model => model.Loai_id)
@@ -41,7 +41,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.GiaBan, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.GiaBan,"Giá bán" , new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.GiaBan)
                 @Html.ValidationMessageFor(model => model.GiaBan)
@@ -49,7 +49,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.GiaGoc, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.GiaGoc, "Giá gốc", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.GiaGoc)
                 @Html.ValidationMessageFor(model => model.GiaGoc)
@@ -57,7 +57,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.GiaGop, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.GiaGop, "Giá góp", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.GiaGop)
                 @Html.ValidationMessageFor(model => model.GiaGop)
@@ -65,7 +65,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.SoLuongTon, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.SoLuongTon, "Số lượng tồn", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.SoLuongTon)
                 @Html.ValidationMessageFor(model => model.SoLuongTon)
@@ -74,14 +74,14 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Thêm mới" class="btn btn-success" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Trở về", "Index", null, new {@class="btn btn-info" })
 </div>
 
 @section Scripts {
