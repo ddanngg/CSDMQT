@@ -1,0 +1,87 @@
+﻿@model QuyetTienWeb.Models.BangSanPham
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Xóa sản phẩm</h2>
+
+<h3>@*Are you sure you want to delete this?*@</h3>
+<div>
+    @*<h4>BangSanPham</h4>*@
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @*@Html.DisplayNameFor(model => model.MaSP)*@
+            Mã sản phẩm :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaSP)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.TenSP)*@
+            Tên sản phẩm :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenSP)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.GiaBan)*@
+            Giá bán :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GiaBan)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.GiaGoc)*@
+            Giá gốc :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GiaGoc)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.GiaGop)*@
+            Giá góp :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GiaGop)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.SoLuongTon)*@
+            Số lượng tồn :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoLuongTon)
+        </dd>
+
+        <dt>
+            @*@Html.DisplayNameFor(model => model.LoaiSanPham.TenLoai)*@
+            Loại :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoaiSanPham.TenLoai)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" />
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

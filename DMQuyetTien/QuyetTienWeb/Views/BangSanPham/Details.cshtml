@@ -1,0 +1,81 @@
+﻿@model QuyetTienWeb.Models.BangSanPham
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Chi tiết sản phẩm</h2>
+
+<div>
+    @*<h4>BangSanPham</h4>*@
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @*@Html.DisplayNameFor(model => model.MaSP)*@
+            Mã sản phẩm :
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaSP)
+        </dd>
+
+        <dt>
+            Tên sản phẩm :
+            @*@Html.DisplayNameFor(model => model.TenSP)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenSP)
+        </dd>
+
+        <dt>
+            Giá bán :
+            @*@Html.DisplayNameFor(model => model.GiaBan)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GiaBan)
+        </dd>
+
+        <dt>
+            Giá gốc :
+            @*@Html.DisplayNameFor(model => model.GiaGoc)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GiaGoc)
+        </dd>
+
+        <dt>
+            Giá góp :
+            @*@Html.DisplayNameFor(model => model.GiaGop)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GiaGop)
+        </dd>
+
+        <dt>
+            Số lượng tồn :
+            @*@Html.DisplayNameFor(model => model.SoLuongTon)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoLuongTon)
+        </dd>
+
+        <dt>
+            Tên loại :
+            @*@Html.DisplayNameFor(model => model.LoaiSanPham.TenLoai)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoaiSanPham.TenLoai)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }, new {@class="btn btn-warning" })
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-danger" })
+</p>
