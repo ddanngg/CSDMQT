@@ -7,7 +7,7 @@
 <h2>Tạo mới sản phẩm</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "BangSanPham", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     
@@ -17,10 +17,9 @@
         @Html.ValidationSummary(true)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.MaSP,"Mã sản phẩm :", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.MaSP, "Mã sản phẩm :", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @*@Html.EditorFor(model => model.MaSP, new { @class = "form-control" })*@
-                @Html.TextBoxFor(model => model.MaSP, new { @class ="form-control"})
+                @Html.TextBoxFor(model => model.MaSP, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.MaSP)
             </div>
         </div>
@@ -28,7 +27,6 @@
         <div class="form-group">
             @Html.LabelFor(model => model.TenSP, "Tên sản phẩm :", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @*@Html.EditorFor(model => model.TenSP)*@
                 @Html.TextBoxFor(model => model.TenSP, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.TenSP)
             </div>
@@ -45,7 +43,6 @@
         <div class="form-group">
             @Html.LabelFor(model => model.GiaBan, "Giá bán :", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @*@Html.EditorFor(model => model.GiaBan)*@
                 @Html.TextBoxFor(model => model.GiaBan, new { type = "number", @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.GiaBan)
             </div>
@@ -54,7 +51,6 @@
         <div class="form-group">
             @Html.LabelFor(model => model.GiaGoc, "Giá gốc :", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @*@Html.EditorFor(model => model.GiaGoc)*@
                 @Html.TextBoxFor(model => model.GiaGoc, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.GiaGoc)
             </div>
@@ -63,7 +59,6 @@
         <div class="form-group">
             @Html.LabelFor(model => model.GiaGop, "Giá góp :", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @*@Html.EditorFor(model => model.GiaGop)*@
                 @Html.TextBoxFor(model => model.GiaGop, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.GiaGop)
             </div>
@@ -72,7 +67,6 @@
         <div class="form-group">
             @Html.LabelFor(model => model.SoLuongTon, "Số lượng tồn :", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @*@Html.EditorFor(model => model.SoLuongTon)*@
                 @Html.TextBoxFor(model => model.SoLuongTon, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.SoLuongTon)
             </div>
@@ -80,10 +74,9 @@
         <div class="form-group">
             @Html.Label("HinhAnh", "Hinh san pham :", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @*@Html.EditorFor(model => model.SoLuongTon)*@
-                @Html.TextBox("HinhAnh","",new {type="file", @class = "form-control" })
+                @Html.TextBox("HinhAnh", "", new { type = "file", @class = "form-control" })
                 @Html.ValidationMessage("HinhAnh")
-                <img style="width:100px" id="HinhSanPham" src="" />
+                <img style="width: 200px" id="HinhSanPham" src="" />
             </div>
         </div>
         <div class="form-group">
