@@ -7,7 +7,7 @@
 <h2>Sửa sản phẩm </h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "BangSanPham", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     
@@ -51,7 +51,6 @@
 
         <div class="form-group">
             @Html.LabelFor(model => model.GiaGoc, "Giá gốc :", new { @class = "control-label col-md-2" })
-            @*@Html.LabelFor(model => model.GiaGoc, new { @class = "control-label col-md-2" })*@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.GiaGoc)
                 @Html.ValidationMessageFor(model => model.GiaGoc)
@@ -75,6 +74,17 @@
         </div>
 
         <div class="form-group">
+            <div class="form-group">
+                @Html.Label("HinhAnh", "Hinh san pham :", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBox("HinhAnh", "", new { type = "file", @class = "form-control" })
+                    @Html.ValidationMessage("HinhAnh")
+                    <img src="@Url.Action("Details", new { id = Model.id })" width="300" id="HinhSanPham" />
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
@@ -88,4 +98,25 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        function readURL(input) {
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#HinhSanPham').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#HinhAnh").change(function () {
+            readURL(this);
+        });
+    </script>
+
+
+
 }

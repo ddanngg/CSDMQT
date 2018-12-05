@@ -23,18 +23,10 @@ namespace QuyetTienWeb.Controllers
         }
 
         // GET: /BangSanPham/Details/5
-        public ActionResult Details(int? id)
+        public FileResult Details(string id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            BangSanPham bangsanpham = db.BangSanPhams.Find(id);
-            if (bangsanpham == null)
-            {
-                return HttpNotFound();
-            }
-            return View(bangsanpham);
+            var path = Server.MapPath("~/App_Data/" + id);
+            return File(path, "images");
         }
 
         // GET: /BangSanPham/Create
@@ -79,7 +71,7 @@ namespace QuyetTienWeb.Controllers
         }
 
         // GET: /BangSanPham/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
             if (id == null)
             {
@@ -99,20 +91,32 @@ namespace QuyetTienWeb.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="id,MaSP,TenSP,Loai_id,GiaBan,GiaGoc,GiaGop,SoLuongTon")] BangSanPham bangsanpham)
+        public ActionResult Edit(BangSanPham bangsanpham)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(bangsanpham).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                using (var scope = new TransactionScope())
+                {
+                    var path = Server.MapPath("~/App_Data");
+                    path = path + "/" + bangsanpham.id;
+                    if (Request.Files["HinhAnh"] != null &&
+                        Request.Files["HinhAnh"].ContentLength > 0)
+                    {
+                        Request.Files["HinhAnh"].SaveAs(path);
+                        db.Entry(bangsanpham).State = EntityState.Modified;
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+                }
+                    
+                
             }
             ViewBag.Loai_id = new SelectList(db.LoaiSanPhams, "id", "TenLoai", bangsanpham.Loai_id);
             return View(bangsanpham);
         }
 
         // GET: /BangSanPham/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
             if (id == null)
             {

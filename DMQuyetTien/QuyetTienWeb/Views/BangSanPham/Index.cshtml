@@ -24,25 +24,17 @@
                 Tên sản phẩm
             </th>
             <th>
-                @*@Html.DisplayNameFor(model => model.GiaBan)*@
                 Giá bán
             </th>
             <th>
-                @*@Html.DisplayNameFor(model => model.GiaGoc)*@
                 Giá gốc
             </th>
-            <th>
-                Giá góp
-                @*@Html.DisplayNameFor(model => model.GiaGop)*@
+            <th>Giá góp
             </th>
-            <th>
-                Số lượng tồn
-                @*@Html.DisplayNameFor(model => model.SoLuongTon)*@
+            <th>Số lượng tồn
             </th>
-            <th>
-                Tên loại
-                @*@Html.DisplayNameFor(model => model.LoaiSanPham.TenLoai)*@
-            </th>
+            <th>Tên loại</th>
+            <th>Ảnh SP</th>
             <th></th>
         </tr>
     </thead>
@@ -71,6 +63,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.LoaiSanPham.TenLoai)
                 </td>
+                <td><img src="@Url.Action("Details", new { id = item.id })" width="150" height="100" /></td>
                 <td>
                     
                     <a class=" btn btn-warning" href="@Url.Action("Edit",new {id = item.id})">
@@ -82,9 +75,6 @@
                     <a class="btn btn-danger" href="@Url.Action("Delete", new { id = item.id })">
                         <i class="far fa-trash-alt"></i>
                     </a>
-                    @*@Html.ActionLink("Sửa", "Edit", new { id = item.id }, new { @class = " btn btn-warning" })*@
-                    @*@Html.ActionLink("Chi tiết", "Details", new { id = item.id }, new { @class = " btn btn-info" })*@
-                    @*@Html.ActionLink("Xóa", "Delete", new { id = item.id }, new { @class = " btn btn-danger" })*@
                 </td>
             </tr>
         }
