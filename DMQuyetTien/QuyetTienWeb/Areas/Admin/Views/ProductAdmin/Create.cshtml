@@ -1,0 +1,114 @@
+﻿@model QuyetTienWeb.Models.BangSanPham
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Create</h2>
+
+
+@using (Html.BeginForm("Create", "BangSanPham", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @*<h4>BangSanPham</h4>*@
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaSP, "Mã sản phẩm :", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.MaSP, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.MaSP)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TenSP, "Tên sản phẩm :", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.TenSP, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TenSP)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Loai_id, "Loại :", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Loai_id", (IEnumerable<SelectListItem>)ViewData["Loai_id"], new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Loai_id)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.GiaBan, "Giá bán :", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.GiaBan, new { type = "number", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.GiaBan)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.GiaGoc, "Giá gốc :", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.GiaGoc, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.GiaGoc)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.GiaGop, "Giá góp :", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.GiaGop, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.GiaGop)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SoLuongTon, "Số lượng tồn :", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.SoLuongTon, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SoLuongTon)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("HinhAnh", "Hinh san pham :", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBox("HinhAnh", "", new { type = "file", @class = "form-control" })
+                @Html.ValidationMessage("HinhAnh")
+                <img style="width: 300px" id="HinhSanPham" src="" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        function readURL(input) {
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#HinhSanPham').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#HinhAnh").change(function () {
+            readURL(this);
+        });
+    </script>
+}
